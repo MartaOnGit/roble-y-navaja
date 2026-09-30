@@ -1,0 +1,576 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Barbería Roble & Navaja</title>
+<meta name="description" content="Barbería Roble & Navaja en San Isidro, Costa Rica. Cortes clásicos y modernos, afeitado tradicional y cuidado de barba.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,300;9..144,500;9..144,600;9..144,700&family=Work+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --charcoal:#1c1a17;
+    --charcoal-2:#26221d;
+    --cream:#f2ece0;
+    --copper:#b3703a;
+    --copper-dark:#8a5228;
+    --moss:#3c4a35;
+    --line: rgba(242,236,224,0.16);
+  }
+  *{box-sizing:border-box; margin:0; padding:0;}
+  html{scroll-behavior:smooth;}
+  body{
+    background:var(--cream);
+    color:var(--charcoal);
+    font-family:'Work Sans', sans-serif;
+    line-height:1.5;
+  }
+  h1,h2,h3{
+    font-family:'Fraunces', serif;
+    font-weight:600;
+    letter-spacing:-0.01em;
+  }
+  a{color:inherit; text-decoration:none;}
+  img{max-width:100%; display:block;}
+  .wrap{max-width:1080px; margin:0 auto; padding:0 28px;}
+
+  /* NAV */
+  header{
+    position:sticky; top:0; z-index:50;
+    background:var(--charcoal);
+    border-bottom:1px solid var(--line);
+  }
+  nav.wrap{
+    display:flex; align-items:center; justify-content:space-between;
+    height:76px;
+  }
+  .brand{
+    color:var(--cream);
+    font-family:'Fraunces', serif;
+    font-size:1.3rem;
+    font-weight:600;
+  }
+  .brand span{color:var(--copper);}
+  .navlinks{display:flex; gap:2rem;}
+  .navlinks a{
+    color:var(--cream); opacity:0.82; font-size:0.95rem;
+    padding:4px 0; border-bottom:1px solid transparent;
+    transition:opacity .2s, border-color .2s;
+  }
+  .navlinks a:hover{opacity:1; border-color:var(--copper);}
+  .navtoggle{display:none; flex-direction:column; gap:5px; background:none; border:0; cursor:pointer;}
+  .navtoggle span{width:24px; height:2px; background:var(--cream);}
+
+  /* HERO */
+  .hero{
+    background:
+      linear-gradient(180deg, rgba(28,26,23,0.55), rgba(28,26,23,0.85)),
+      repeating-linear-gradient(135deg, #262019 0 26px, #1c1a17 26px 52px);
+    color:var(--cream);
+    padding:120px 0 100px;
+    position:relative;
+    overflow:hidden;
+  }
+  .hero .wrap{position:relative; z-index:2;}
+  .hero-eyebrow{
+    color:var(--copper);
+    font-size:0.95rem;
+    margin-bottom:18px;
+  }
+  .hero h1{
+    font-size:clamp(2.6rem, 6vw, 4.4rem);
+    max-width:11ch;
+    line-height:1.02;
+    margin-bottom:22px;
+  }
+  .hero p{
+    max-width:44ch;
+    font-size:1.1rem;
+    color:rgba(242,236,224,0.82);
+    margin-bottom:36px;
+  }
+  .hero-actions{display:flex; gap:16px; flex-wrap:wrap;}
+  .btn{
+    display:inline-block;
+    padding:14px 28px;
+    font-size:0.95rem;
+    border-radius:2px;
+    cursor:pointer;
+    border:1px solid transparent;
+  }
+  .btn-primary{background:var(--copper); color:var(--charcoal); font-weight:600;}
+  .btn-primary:hover{background:var(--copper-dark);}
+  .btn-ghost{border-color:rgba(242,236,224,0.4); color:var(--cream);}
+  .btn-ghost:hover{border-color:var(--cream);}
+
+  section{padding:96px 0;}
+  .section-head{max-width:52ch; margin-bottom:52px;}
+  .section-head p.kicker{color:var(--copper-dark); font-size:0.95rem; margin-bottom:10px;}
+  .section-head h2{font-size:clamp(1.8rem, 3.4vw, 2.6rem);}
+
+  /* SERVICES */
+  .services{background:var(--cream);}
+  .service-list{border-top:1px solid rgba(28,26,23,0.14);}
+  .service-row{
+  display:flex;
+  justify-content:space-between;
+  align-items:baseline;
+  padding:26px 0;
+  border-bottom:1px solid rgba(28,26,23,0.14);
+  gap:24px;
+  transition:padding-left .2s ease, padding-right .2s ease;
+}
+
+.service-row:hover{
+  padding-left:10px;
+  padding-right:10px;
+}
+
+.service-row h3{
+  font-size:1.25rem;
+  font-weight:500;
+  transition:color .2s ease;
+}
+
+.service-row:hover h3{
+  color:var(--copper-dark);
+}
+  .service-row .desc{
+    font-size:0.92rem; color:#585148; margin-top:4px; max-width:46ch;
+  }
+  .service-row .price{
+    font-family:'Fraunces', serif; font-size:1.2rem; white-space:nowrap; color:var(--copper-dark);
+  }
+
+  /* GALLERY */
+  .gallery{background:var(--charcoal); color:var(--cream);}
+  .gallery .section-head p.kicker{color:var(--copper);}
+  .grid-gallery{
+    display:grid;
+    grid-template-columns:repeat(3, 1fr);
+    gap:14px;
+  }
+  .gallery-card{
+  aspect-ratio:16/10;
+  border:1px solid var(--line);
+  position:relative;
+  overflow:hidden;
+  background:var(--charcoal-2);
+}
+
+.gallery-card img{
+  width:100%;
+  height:100%;
+  object-fit:contain;
+  display:block;
+  transition:transform .4s ease;
+}
+
+.gallery-card:hover img{
+  transform:scale(1.04);
+}
+
+.gallery-card span{
+  position:absolute;
+  left:16px;
+  bottom:16px;
+  z-index:2;
+  color:var(--cream);
+  font-size:0.85rem;
+  background:rgba(28,26,23,0.72);
+  padding:7px 10px;
+}
+  
+  .gallery-card::before{
+    content:'';
+    position:absolute; inset:0;
+    background-image: radial-gradient(circle at 30% 30%, rgba(179,112,58,0.18), transparent 60%);
+  }
+  .gallery-note{
+    margin-top:20px; font-size:0.88rem; color:rgba(242,236,224,0.55);
+  }
+
+  /* BOOKING */
+  .booking{background:var(--moss); color:var(--cream);}
+  .booking .section-head p.kicker{color:#d8cfa9;}
+  .booking-layout{
+    display:grid;
+    grid-template-columns:1fr 1.1fr;
+    gap:56px;
+    align-items:start;
+  }
+  .booking-info h3{font-size:1.3rem; margin-bottom:10px;}
+  .booking-info p{color:rgba(242,236,224,0.82); margin-bottom:22px; max-width:38ch;}
+  .booking-info .whatsapp{
+    display:inline-flex; align-items:center; gap:10px;
+    color:var(--cream); border-bottom:1px solid rgba(242,236,224,0.4);
+    padding-bottom:4px; font-size:0.95rem;
+  }
+  form{display:grid; gap:16px;}
+  .field{display:grid; gap:6px;}
+  .field label{font-size:0.85rem; color:rgba(242,236,224,0.75);}
+  .field input,
+.field select{
+  background:rgba(242,236,224,0.08);
+  border:1px solid rgba(242,236,224,0.3);
+  color:var(--cream);
+  padding:12px 14px;
+  font-family:inherit;
+  font-size:0.95rem;
+  border-radius:2px;
+}
+
+.field input:focus,
+.field select:focus{
+  outline:none;
+  border-color:var(--copper);
+  box-shadow:0 0 0 3px rgba(179,112,58,0.12);
+  background:rgba(242,236,224,0.11);
+}
+.field input::placeholder{
+  color:rgba(242,236,224,0.4);
+}
+
+.field-row{
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:16px;
+}
+
+form .btn-primary{
+  border:0;
+  width:fit-content;
+  transition:background .2s ease, transform .2s ease;
+}
+
+form .btn-primary:hover{
+  background:var(--copper-dark);
+  transform:translateY(-2px);
+}
+
+  /* LOCATION */
+  .location{background:var(--cream);}
+  .loc-layout{
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:56px;
+  }
+  .loc-map{
+    background:#e6ddc9;
+    border:1px solid rgba(28,26,23,0.14);
+    aspect-ratio:4/3;
+    display:flex; align-items:center; justify-content:center;
+    color:#8a7f66; font-size:0.9rem; text-align:center; padding:20px;
+  }
+  .hours-table{width:100%; border-collapse:collapse; margin-top:10px;}
+  .hours-table td{padding:10px 0; border-bottom:1px solid rgba(28,26,23,0.12); font-size:0.95rem;}
+  .hours-table td:last-child{text-align:right; color:#585148;}
+  .addr{margin-bottom:26px;}
+  .addr p{color:#585148; font-size:0.95rem; margin-top:6px;}
+
+  /* CONTACT / FOOTER */
+  footer{background:var(--charcoal); color:var(--cream); padding:64px 0 32px;}
+  .footer-top{
+    display:grid;
+    grid-template-columns:1.3fr 1fr 1fr;
+    gap:40px;
+    padding-bottom:48px;
+    border-bottom:1px solid var(--line);
+  }
+  footer h3{font-size:1.1rem; margin-bottom:16px; font-weight:500;}
+  footer .brand{margin-bottom:14px;}
+  footer p.desc{color:rgba(242,236,224,0.65); font-size:0.92rem; max-width:32ch;}
+  .footer-links a{
+    display:block; color:rgba(242,236,224,0.75); font-size:0.92rem; padding:6px 0;
+  }
+  .footer-links a:hover{color:var(--copper);}
+  .footer-bottom{
+    display:flex; justify-content:space-between; align-items:center;
+    padding-top:24px; font-size:0.82rem; color:rgba(242,236,224,0.45);
+    flex-wrap:wrap; gap:10px;
+  }
+
+  @media (max-width:760px){
+    .navlinks{
+      position:absolute; top:76px; left:0; right:0;
+      background:var(--charcoal);
+      flex-direction:column; gap:0;
+      display:none;
+      border-bottom:1px solid var(--line);
+    }
+    .navlinks.open{display:flex;}
+    .navlinks a{padding:16px 28px; width:100%; border-bottom:1px solid var(--line);}
+    .navtoggle{display:flex;}
+    .grid-gallery{grid-template-columns:repeat(2, 1fr);}
+    .booking-layout, .loc-layout{grid-template-columns:1fr;}
+    .footer-top{grid-template-columns:1fr;}
+    .field-row{grid-template-columns:1fr;}
+    section{padding:64px 0;}
+  }
+</style>
+</head>
+<body>
+
+<header>
+  <nav class="wrap">
+    <a href="#" class="brand">Roble <span>&</span> Navaja</a>
+    <div class="navlinks" id="navlinks">
+      <a href="#servicios">Servicios</a>
+      <a href="#galeria">Galería</a>
+      <a href="#reservar">Reservar</a>
+      <a href="#ubicacion">Ubicación</a>
+      <a href="#contacto">Contacto</a>
+    </div>
+    <button class="navtoggle" id="navtoggle" aria-label="Abrir menú">
+      <span></span><span></span><span></span>
+    </button>
+  </nav>
+</header>
+
+<section class="hero">
+  <div class="wrap">
+    <p class="hero-eyebrow">Barbería en San Isidro, Costa Rica</p>
+    <h1>Oficio de navaja, corte con carácter.</h1>
+    <p>Cortes clásicos y modernos, afeitado tradicional y cuidado de barba, hechos con calma y buen ojo. Sin prisa, sin atajos.</p>
+    <div class="hero-actions">
+      <a href="#reservar" class="btn btn-primary">Reservar cita</a>
+      <a href="#servicios" class="btn btn-ghost">Ver servicios</a>
+    </div>
+  </div>
+</section>
+
+<section class="services" id="servicios">
+  <div class="wrap">
+    <div class="section-head">
+      <p class="kicker">Servicios y precios</p>
+      <h2>Cada corte, a su tiempo</h2>
+    </div>
+    <div class="service-list">
+      <div class="service-row">
+        <div>
+          <h3>Corte clásico</h3>
+          <div class="desc">Corte a tijera y máquina, lavado incluido.</div>
+        </div>
+        <div class="price">₡6.000</div>
+      </div>
+      <div class="service-row">
+        <div>
+          <h3>Corte + barba</h3>
+          <div class="desc">Corte completo más perfilado de barba a navaja.</div>
+        </div>
+        <div class="price">₡9.000</div>
+      </div>
+      <div class="service-row">
+        <div>
+          <h3>Afeitado a navaja</h3>
+          <div class="desc">Afeitado tradicional con toalla caliente y espuma.</div>
+        </div>
+        <div class="price">₡5.500</div>
+      </div>
+      <div class="service-row">
+        <div>
+          <h3>Diseño de barba</h3>
+          <div class="desc">Perfilado, línea y definición de contornos.</div>
+        </div>
+        <div class="price">₡4.000</div>
+      </div>
+      <div class="service-row">
+        <div>
+          <h3>Corte infantil</h3>
+          <div class="desc">Para menores de 12 años.</div>
+        </div>
+        <div class="price">₡5.000</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="gallery" id="galeria">
+  <div class="wrap">
+    <div class="section-head">
+      <p class="kicker">Galería</p>
+      <h2>Trabajos recientes</h2>
+    </div>
+    <div class="grid-gallery">
+    <div class="gallery-card">
+  <img src="img/corte-clasico.jpg" alt="Corte clásico">
+  <span>Corte clásico</span>
+</div>
+
+<div class="gallery-card">
+  <img src="img/fade-barba.jpg" alt="Fade + barba">
+  <span>Fade + barba</span>
+</div>
+
+<div class="gallery-card">
+  <img src="img/afeitado.jpg" alt="Afeitado a navaja">
+  <span>Afeitado a navaja</span>
+</div>
+
+<div class="gallery-card">
+  <img src="img/barba.jpg" alt="Diseño de barba">
+  <span>Diseño de barba</span>
+</div>
+
+<div class="gallery-card">
+  <img src="img/corte-moderno.jpg" alt="Corte moderno">
+  <span>Corte moderno</span>
+</div>
+
+<div class="gallery-card">
+  <img src="img/antes-despues.jpg" alt="Antes y después">
+  <span>Antes / después</span>
+</div> 
+</div>
+    
+</section>
+
+<section class="booking" id="reservar">
+  <div class="wrap booking-layout">
+    <div class="booking-info">
+      <p class="kicker">Reservar cita</p>
+      <h3>Apartá tu espacio</h3>
+      <p>Completá el formulario y te confirmamos por WhatsApp. También podés escribirnos directo si preferís coordinar por ahí.</p>
+      <a href="https://wa.me/50661026132?text=Hola%2C%20quiero%20reservar%20una%20cita" class="whatsapp" target="_blank">Escribir por WhatsApp →</a>
+    </div>
+    <form>
+      <div class="field-row">
+        <div class="field">
+          <label for="nombre">Nombre</label>
+          <input type="text" id="nombre" placeholder="Tu nombre">
+        </div>
+        <div class="field">
+          <label for="telefono">Teléfono</label>
+          <input type="tel" id="telefono" placeholder="8888-8888">
+        </div>
+      </div>
+      <div class="field">
+        <label for="servicio">Servicio</label>
+        <select id="servicio">
+          <option>Corte clásico</option>
+          <option>Corte + barba</option>
+          <option>Afeitado a navaja</option>
+          <option>Diseño de barba</option>
+          <option>Corte infantil</option>
+        </select>
+      </div>
+      <div class="field-row">
+        <div class="field">
+          <label for="fecha">Fecha</label>
+          <input type="date" id="fecha">
+        </div>
+        <div class="field">
+          <label for="hora">Hora</label>
+          <input type="time" id="hora">
+        </div>
+      </div>
+      <button type="button" class="btn btn-primary" id="btnSolicitar">Solicitar cita</button>
+      <p class="form-note"></p>
+    </form>
+  </div>
+</section>
+
+<section class="location" id="ubicacion">
+  <div class="wrap loc-layout">
+    <div>
+      <div class="section-head" style="margin-bottom:24px;">
+        <p class="kicker">Ubicación</p>
+        <h2>Dónde estamos</h2>
+      </div>
+      <div class="addr">
+        <h3>Barbería Roble & Navaja</h3>
+        <p>San Isidro, Costa Rica</p>
+      </div>
+      <table class="hours-table">
+        <tr><td>Lunes – Viernes</td><td>9:00 am – 7:00 pm</td></tr>
+        <tr><td>Sábado</td><td>8:00 am – 5:00 pm</td></tr>
+        <tr><td>Domingo</td><td>Cerrado</td></tr>
+      </table>
+    </div>
+    
+<div class="loc-map"><iframe src="https://www.google.com/maps/embed?pb=!1m14!1m12!1m3!1d692.7925917780789!2d-83.63946835945517!3d10.019443725655101!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!5e1!3m2!1ses-419!2scr!4v1789075691929!5m2!1ses-419!2scr" style="width:100%; height:100%; border:0;" allowfullscreen="" loading="lazy" referrerpolicy="strict-origin-when-cross-origin"></iframe></div>
+
+  </div>
+</section>
+
+<footer id="contacto">
+  <div class="wrap">
+    <div class="footer-top">
+      <div>
+        <div class="brand">Roble <span>&</span> Navaja</div>
+        <p class="desc">Barbería de barrio con oficio de siempre, en San Isidro, Costa Rica.</p>
+      </div>
+      <div>
+        <h3>Navegación</h3>
+        <div class="footer-links">
+          <a href="#servicios">Servicios</a>
+          <a href="#galeria">Galería</a>
+          <a href="#reservar">Reservar</a>
+        </div>
+      </div>
+      <div>
+        <h3>Contacto</h3>
+        <div class="footer-links">
+          <a href="https://wa.me/50661026132" target="_blank" rel="noopener">
+              WhatsApp: 6102-6132
+         </a>
+         <a href="mailto:correo@barberia.com">
+             correo@barberia.com
+         </a>
+        <a href="https://www.instagram.com/robleynavaja/" target="_blank" rel="noopener">
+             Instagram @robleynavaja
+        </a>
+        </div>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <span>© 2026 Barbería Roble & Navaja</span>
+      <span>Diseño y desarrollo: Marta García</span>
+    </div>
+  </div>
+</footer>
+
+<script>
+  const toggle = document.getElementById('navtoggle');
+  const links = document.getElementById('navlinks');
+  toggle.addEventListener('click', () => links.classList.toggle('open'));
+  links.querySelectorAll('a').forEach(a => a.addEventListener('click', () => links.classList.remove('open')));
+
+  // Número de WhatsApp del negocio, con código de país 506 y sin espacios ni guiones
+  const numeroWhatsApp = "50661026132";
+  const fechaInput = document.getElementById('fecha');
+
+  const hoy = new Date();
+  const año = hoy.getFullYear();
+  const mes = String(hoy.getMonth() + 1).padStart(2, '0');
+  const dia = String(hoy.getDate()).padStart(2, '0');
+
+  fechaInput.min = `${año}-${mes}-${dia}`;
+  document.getElementById('btnSolicitar').addEventListener('click', () => {
+    const nombre = document.getElementById('nombre').value.trim();
+    const telefono = document.getElementById('telefono').value.trim();
+    const servicio = document.getElementById('servicio').value;
+    const fecha = document.getElementById('fecha').value;
+    const hora = document.getElementById('hora').value;
+
+    if (!nombre || !telefono || !fecha || !hora) {
+      alert('Completá nombre, teléfono, fecha y hora antes de continuar.');
+      return;
+    }
+
+    const mensaje =
+      `Hola, quiero reservar una cita.\n` +
+      `Nombre: ${nombre}\n` +
+      `Teléfono: ${telefono}\n` +
+      `Servicio: ${servicio}\n` +
+      `Fecha: ${fecha}\n` +
+      `Hora: ${hora}`;
+
+    const url = `https://wa.me/${numeroWhatsApp}?text=${encodeURIComponent(mensaje)}`;
+    window.open(url, '_blank');
+  });
+</script>
+
+</body>
+</html>
